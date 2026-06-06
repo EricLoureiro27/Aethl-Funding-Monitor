@@ -1,12 +1,15 @@
 name: Aethl Funding Monitor
 
+# Runs every Monday at 12:00 UTC, plus a manual "Run workflow" button.
+# State (which powers NEW / REMOVED detection) is committed back to the repo
+# so it reliably persists across weekly runs.
 on:
   schedule:
-    - cron: "0 12 * * 1"
-  workflow_dispatch:
+    - cron: "0 12 * * 1"      # weekly, Mondays 12:00 UTC
+  workflow_dispatch:           # lets you trigger a run manually
 
 permissions:
-  contents: write
+  contents: write              # needed to commit state + tracker back
 
 jobs:
   monitor:
@@ -25,6 +28,8 @@ jobs:
           SAM_API_KEY: ${{ secrets.SAM_API_KEY }}
           MONDAY_TOKEN: ${{ secrets.MONDAY_TOKEN }}
           MONDAY_BOARD_ID: ${{ secrets.MONDAY_BOARD_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 aethl_funding_monitor.py --push
           python3 build_tracker_xlsx.py
@@ -33,14 +38,16 @@ jobs:
         run: |
           git config user.name  "funding-monitor-bot"
           git config user.email "actions@github.com"
-          git add opportunities_state.json opportunities.json opportunities.csv opportunities_removed.json Aethl_Funding_Tracker.xlsx 2>/dev/null || true
-          git commit -m "Weekly funding update" || echo "No changes"
+          git add opportunities_state.json opportunities.json opportunities.csv \
+                  opportunities_removed.json Aethl_Funding_Tracker.xlsx 2>/dev/null || true
+          git commit -m "Weekly funding update: $(date -u +%Y-%m-%d)" || echo "No changes"
           git push || echo "Nothing to push"
 
-      - name: Upload tracker
+      - name: Upload tracker as downloadable artifact
         uses: actions/upload-artifact@v4
         with:
           name: aethl-funding-tracker
           path: |
             Aethl_Funding_Tracker.xlsx
             opportunities.csv
+

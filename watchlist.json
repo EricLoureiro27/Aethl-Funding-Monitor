@@ -1,0 +1,85 @@
+[
+  {"number": "HT942523SBAA1", "source": "Grants.gov", "auto": true,
+   "title": "DOD Defense Health Agency (DHA) Research & Development FY23-FY27 BAA",
+   "application": "Traumatic Wound and Burn Injuries", "funder": "DOD - DHA",
+   "vehicle": "grant/BAA", "eligibility_channel": "US-direct",
+   "link": "https://www.grants.gov/search-results-detail/343725"},
+
+  {"number": "PA-25-305", "source": "Grants.gov", "auto": true,
+   "title": "NIH Research Project Grant (Parent R01 Clinical Trial Required)",
+   "application": "Diabetic Foot Ulcers", "funder": "HHS - NIH",
+   "vehicle": "grant", "eligibility_channel": "US-direct",
+   "link": "https://grants.nih.gov/grants/guide/pa-files/PA-25-305.html"},
+
+  {"number": "PA-24-245", "source": "Grants.gov", "auto": true,
+   "title": "NIH SBIR/STTR Program (Omnibus)",
+   "application": "Diabetic Foot Ulcers", "funder": "HHS - NIH",
+   "vehicle": "grant", "eligibility_channel": "US-direct",
+   "link": "https://grants.nih.gov/grants/guide/pa-files/PA-24-245.html"},
+
+  {"number": "HT9425-23-S-SOC1", "source": "Grants.gov", "auto": true,
+   "title": "BAA for Extramural Biomedical and Human Performance R&D (USSOCOM)",
+   "application": "Surgery Recovery", "funder": "DOD - USSOC",
+   "vehicle": "grant/BAA", "eligibility_channel": "US-direct", "link": ""},
+
+  {"number": "HT942526MBRPDA", "source": "Grants.gov", "auto": true,
+   "title": "Military Burn Research Program",
+   "application": "Traumatic Wound and Burn Injuries", "funder": "DOD - DHA CDMRP",
+   "vehicle": "grant", "eligibility_channel": "US-direct", "link": ""},
+
+  {"number": "ARPA-H-SOL-24-105", "source": "SAM.gov", "auto": true,
+   "title": "Scalable Solutions Office (SSO) Innovative Solutions Opening (ISO)",
+   "application": "Manufacturing / Chronic Wound Care", "funder": "HHS - ARPA-H",
+   "vehicle": "OT", "eligibility_channel": "US-direct", "total_funding": null,
+   "link": "https://sam.gov/opp/"},
+
+  {"number": "DPA26BZ01-NP001", "source": "SAM.gov", "auto": true,
+   "title": "Broadening Availability of Regimens for K-9s (BARK) - Open Topic",
+   "application": "Surgery Recovery", "funder": "DOD - DARPA",
+   "vehicle": "contract/solicitation", "eligibility_channel": "US-direct",
+   "total_funding": 150000, "link": "https://sam.gov/opp/"},
+
+  {"number": "BAA-23-100-SOL-00004", "source": "SAM.gov", "auto": true,
+   "title": "BARDA Broad Agency Announcement (BAA)",
+   "application": "Traumatic Wound and Burn Injuries", "funder": "HHS - BARDA",
+   "vehicle": "grant/BAA", "eligibility_channel": "US-direct", "link": "https://sam.gov/opp/"},
+
+  {"number": "NSF-SBIR-DFU", "source": "NSF", "auto": false,
+   "title": "NSF SBIR / STTR Program (ANTICIPATED)",
+   "application": "Diabetic Foot Ulcers", "funder": "NSF", "vehicle": "grant",
+   "eligibility_channel": "US-direct", "total_funding": 275000, "num_awards": 1,
+   "cost_share_required": false, "deadline": "2026-11-05",
+   "eligibility_desc": "Small business (for-profit)",
+   "link": "https://www.nsf.gov/funding/opportunities/sbirsttr-phase-i-nsf-small-business-innovation-research-small-business"},
+
+  {"number": "HALEON-100544", "source": "Haleon Open Innovation", "auto": false,
+   "title": "Oral microbiome modulation for improved gum health",
+   "application": "Oral Health", "funder": "Company - Haleon", "vehicle": "CRA",
+   "eligibility_channel": "open-innovation", "total_funding": 200000,
+   "link": "https://www.haleonopeninnovation.com/res/innovation-portal/need.jsf?needID=100544"},
+
+  {"number": "INNOGET-2448", "source": "Innoget", "auto": false,
+   "title": "Gum Health Solutions", "application": "Oral Health",
+   "funder": "Company - Procter and Gamble", "vehicle": "CRA",
+   "eligibility_channel": "open-innovation", "total_funding": 200000,
+   "deadline": "2026-12-31",
+   "link": "https://www.innoget.com/technology-calls/2448/seeking-gum-health-solutions"},
+
+  {"number": "YET2-COOLING", "source": "yet2", "auto": false,
+   "title": "Methods or Technologies to Extend the Duration of the Cooling Sensation of Skin Topicals",
+   "application": "Skincare", "funder": "Company - Undisclosed", "vehicle": "CRA",
+   "eligibility_channel": "open-innovation", "total_funding": 200000,
+   "link": "https://www.yet2.com/active-projects/seeking-methods-or-technologies-to-extend-the-duration-of-the-cooling-sensation/"},
+
+  {"number": "YET2-SKINCARE", "source": "yet2", "auto": false,
+   "title": "Novel skincare products & technologies", "application": "Skincare",
+   "funder": "Company - Undisclosed", "vehicle": "CRA",
+   "eligibility_channel": "open-innovation", "total_funding": 200000,
+   "link": "https://www.yet2.com/active-projects/seeking-novel-skincare-products-technologies/"},
+
+  {"number": "YET2-ANTIMICROBIAL", "source": "yet2", "auto": false,
+   "title": "Antimicrobial Solutions for Wound Care Applications",
+   "application": "Chronic Wound Care", "funder": "Company - Undisclosed", "vehicle": "CRA",
+   "eligibility_channel": "open-innovation", "total_funding": 200000,
+   "link": "https://www.yet2.com/active-projects/seeking-antimicrobial-solutions-for-wound-care-applications/"}
+]

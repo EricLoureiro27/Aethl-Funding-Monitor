@@ -1,0 +1,46 @@
+name: Aethl Funding Monitor
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install openpyxl
+
+      - name: Run monitor and rebuild tracker
+        env:
+          SAM_API_KEY: ${{ secrets.SAM_API_KEY }}
+          MONDAY_TOKEN: ${{ secrets.MONDAY_TOKEN }}
+          MONDAY_BOARD_ID: ${{ secrets.MONDAY_BOARD_ID }}
+        run: |
+          python3 aethl_funding_monitor.py --push
+          python3 build_tracker_xlsx.py
+
+      - name: Commit updated state + tracker
+        run: |
+          git config user.name  "funding-monitor-bot"
+          git config user.email "actions@github.com"
+          git add opportunities_state.json opportunities.json opportunities.csv opportunities_removed.json Aethl_Funding_Tracker.xlsx 2>/dev/null || true
+          git commit -m "Weekly funding update" || echo "No changes"
+          git push || echo "Nothing to push"
+
+      - name: Upload tracker
+        uses: actions/upload-artifact@v4
+        with:
+          name: aethl-funding-tracker
+          path: |
+            Aethl_Funding_Tracker.xlsx
+            opportunities.csv

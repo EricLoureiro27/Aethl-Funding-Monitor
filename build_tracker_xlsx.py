@@ -16,7 +16,7 @@ thin=Side(style="thin",color="BFBFBF"); border=Border(left=thin,right=thin,top=t
 cols=[("Status",9),("Title",40),("Application",21),("Funding Opp #",17),("Overall",9),
       ("Award Size",8),("Eligibility",9),("Cost Share",8),("Indirect Rates",9),
       ("Proposal Difficulty",11),("Technology Match",11),
-      ("Application Deadline",15),("Total Program Funding",16),("# Awards",8),
+      ("Application Deadline",15),("Total Program Funding",16),("Award Size ($)",13),("# Awards",8),
       ("Cost Share Req?",11),("Eligibility (detail)",34),("Link",34),
       ("Agency / Funder",24),("Source",18),("Award Type",15),("Eligibility Channel",16)]
 SCORE_FIRST,SCORE_LAST=6,11
@@ -42,19 +42,37 @@ for o in opps:
     vals=[o.get("status",""),o.get("title",""),o.get("application",""),o.get("opp_id",""),
           None,o.get("s_award"),o.get("s_elig"),o.get("s_cost"),o.get("s_indirect"),
           o.get("s_difficulty"),o.get("tech_match"),(o.get("deadline","") or "")[:10],
-          o.get("total_funding"),o.get("num_awards"),
+          o.get("total_funding"),o.get("per_award"),o.get("num_awards"),
           ("No" if cs is False else "Yes" if cs else ""),
           o.get("eligibility_desc",""),o.get("link",""),o.get("funder",""),
           o.get("source",""),o.get("vehicle",""),o.get("eligibility_channel","")]
     for i,v in enumerate(vals,start=1):
         cell=ws.cell(r,i,v); cell.font=Font(name=F,size=10); cell.border=border
-        cell.alignment=Alignment(vertical="center",wrap_text=(i in (2,16,17)),
-                                 horizontal="center" if (5<=i<=11 or i in(1,14,15)) else "left")
+        cell.alignment=Alignment(vertical="center",wrap_text=(i in (2,17,18)),
+                                 horizontal="center" if (5<=i<=11 or i in(1,15,16)) else "left")
     oc=ws.cell(r,5); oc.value=round(o.get("overall",0),2)
     oc.number_format="0.00"; oc.font=Font(name=F,bold=True,size=10)
     ws.cell(r,13).number_format='$#,##0;;-'
+    ws.cell(r,14).number_format='$#,##0;;-'
+    # Mark genuinely-absent data clearly (IBEX-style), red italic, so a blank
+    # reads as "not posted yet" rather than an error or oversight.
+    NA="Not currently available"
+    NAFONT=Font(name=F,size=8,italic=True,color="C00000")
+    present={
+        12: bool((o.get("deadline","") or "").strip()),
+        13: o.get("total_funding") not in (None,"",0),
+        14: o.get("per_award") not in (None,"",0),
+        15: o.get("num_awards") not in (None,"",0),
+        16: cs is not None,
+        17: bool((o.get("eligibility_desc","") or "").strip()),
+    }
+    for col,ok in present.items():
+        if not ok:
+            nc=ws.cell(r,col,NA); nc.font=NAFONT; nc.border=border
+            nc.alignment=Alignment(vertical="center",wrap_text=True,
+                horizontal="center" if col in (12,13,14,15,16) else "left")
     if o.get("link"):
-        lc=ws.cell(r,17); lc.hyperlink=o["link"]; lc.font=Font(name=F,size=9,color="0563C1",underline="single")
+        lc=ws.cell(r,18); lc.hyperlink=o["link"]; lc.font=Font(name=F,size=9,color="0563C1",underline="single")
     r+=1
 last=r-1
 if last>=4:
@@ -81,3 +99,4 @@ for i,(a,b) in enumerate(notes,start=1):
 ws2.column_dimensions["A"].width=24; ws2.column_dimensions["B"].width=95
 wb.save("Aethl_Funding_Tracker.xlsx")
 print(f"Wrote tracker with {last-3} opportunities")
+

@@ -21,11 +21,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install openpyxl
+      - run: pip install openpyxl pypdf
 
       - name: Run monitor and rebuild tracker
         env:
           SAM_API_KEY: ${{ secrets.SAM_API_KEY }}
+          SAM_API_KEY_2: ${{ secrets.SAM_API_KEY_2 }}
           MONDAY_TOKEN: ${{ secrets.MONDAY_TOKEN }}
           MONDAY_BOARD_ID: ${{ secrets.MONDAY_BOARD_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
